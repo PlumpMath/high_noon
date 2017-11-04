@@ -1,0 +1,158 @@
+[gd_scene load_steps=8 format=1]
+
+[ext_resource path="res://Textures/desert.png" type="Texture" id=1]
+[ext_resource path="res://Textures/wood_button.png" type="Texture" id=2]
+[ext_resource path="res://Textures/pirate.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 511.006, 5.02759 )
+
+[sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 51.6311, 25.3394 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 0, -30, 12, 25, -12, 25 )
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends KinematicBody2D
+
+# Constants
+const GRAVITY = 400
+const JUMP_STRENTH = 300
+# Cant jump for this long after a jump
+const CAN_JUMP_TIME_LIMIT = 1.0
+
+# Members
+var velocity = Vector2()
+
+export var PlayerSpeed = 100
+
+export var Smoothness = 0.1
+
+onready var sprite = get_node(\"guy\")
+
+var jump_allowed_timer = 0
+var on_ground = 0
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	set_fixed_process(true)
+
+func _fixed_process(delta):
+	velocity.y += delta * GRAVITY
+	
+	if (jump_allowed_timer > 0):
+		jump_allowed_timer -= delta
+
+	var direction = 0
+	if (Input.is_action_pressed(\"move_left\")):
+		direction = -1
+		sprite.set_flip_h(true)
+	elif (Input.is_action_pressed(\"move_right\")):
+		direction = 1
+		sprite.set_flip_h(false)
+
+	velocity.x = lerp(velocity.x, PlayerSpeed * direction, Smoothness)
+
+	var motion = velocity * delta
+	move(motion)
+
+	# Are we on the ground
+	if (is_colliding()):
+		on_ground = 1
+		print(\"On Ground\")
+		var normal = get_collision_normal()
+		motion = normal.slide(motion)
+		velocity = normal.slide(velocity)
+		move(motion)
+	
+	# Jump
+	if(Input.is_action_pressed(\"jump\") && is_jump_allowed()):
+		on_ground = 0
+		print(\"Jumped\")
+		velocity.y -= JUMP_STRENTH
+		jump_allowed_timer = CAN_JUMP_TIME_LIMIT
+
+func is_jump_allowed():
+	if (on_ground):
+		return (jump_allowed_timer <= 0)
+"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="background" type="StaticBody2D" parent="."]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 510.895, 517.437 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 5 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 509.511, 488.639 )
+shapes/1/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="desert" type="Sprite" parent="background"]
+
+transform/scale = Vector2( 1.28012, 1.50038 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="background"]
+
+transform/pos = Vector2( 510.895, 517.437 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="background"]
+
+transform/pos = Vector2( 510.739, 487.412 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D 2" type="CollisionShape2D" parent="background"]
+
+transform/pos = Vector2( 509.511, 488.639 )
+shape = SubResource( 5 )
+trigger = false
+_update_shape_index = 1
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+
+transform/pos = Vector2( 40.4565, 442.05 )
+transform/scale = Vector2( 1, 2.66428 )
+input/pickable = false
+shapes/0/shape = SubResource( 6 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = SubResource( 3 )
+PlayerSpeed = 100
+Smoothness = 0.1
+
+[node name="guy" type="Sprite" parent="KinematicBody2D"]
+
+transform/scale = Vector2( 1, 0.487953 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+
+shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 0
+
+
