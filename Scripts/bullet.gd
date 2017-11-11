@@ -31,5 +31,5 @@ func _fixed_process(delta):
 
 	if (is_colliding()):
 		print("collision")
-		print(get_collider())
+		print(get_collider().is_in_group("enemy"))
 		queue_free()
