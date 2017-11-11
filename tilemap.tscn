@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://Textures/background_tileset/woodpaneling.png" type="Texture" id=1]
+[ext_resource path="res://Textures/background_tileset/woodfloor.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="tilemap" type="Node2D"]
+
+[node name="wood_background" type="Sprite" parent="."]
+
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="wood_flooring" type="Sprite" parent="."]
+
+transform/pos = Vector2( 0, -20 )
+texture = ExtResource( 2 )
+region = true
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="wood_flooring"]
+
+transform/scale = Vector2( 0.25, 0.25 )
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 3.07692, 0, 0, 3.07692, 1.90735e-06, 1.43051e-06 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wood_flooring/StaticBody2D"]
+
+transform/pos = Vector2( 1.90735e-06, 1.43051e-06 )
+transform/scale = Vector2( 3.07692, 3.07692 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+
