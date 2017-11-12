@@ -15,7 +15,6 @@ export var PlayerSpeed = 100
 export var Smoothness = 0.1
 
 onready var sprite = get_node("guy")
-onready var bullet = preload("res://bullet_area2d.tscn")
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -29,17 +28,10 @@ func _input(event):
 		jump_count += 1
 
 	if (event.is_action_pressed("shoot")):
-		#print("Gonna shoot")
-		#Generate a bullet and shoot it in the direction we faced last
-		var b = bullet.instance()
-		print(get_tree().get_root())
-		if (global.direction == 1):
-			b.set_pos(get_node("shoot_right").get_global_pos())
-		elif (global.direction == -1):
-			b.set_pos(get_node("shoot_left").get_global_pos())
-
-		get_tree().get_root().add_child(b)
-		print(global.direction)
+		if (global.hero_direction == 1):
+			global.shoot_bullet(get_node("shoot_right").get_global_pos(), global.hero_direction)
+		elif (global.hero_direction == -1):
+			global.shoot_bullet(get_node("shoot_left").get_global_pos(), global.hero_direction)
 
 
 func _fixed_process(delta):
@@ -51,11 +43,11 @@ func _fixed_process(delta):
 	var direction = 0
 	if (Input.is_action_pressed("move_left")):
 		direction = -1
-		global.direction = -1
+		global.hero_direction = -1
 		sprite.set_flip_h(true)
 	elif (Input.is_action_pressed("move_right")):
 		direction = 1
-		global.direction = 1
+		global.hero_direction = 1
 		sprite.set_flip_h(false)
 
 	velocity.x = lerp(velocity.x, PlayerSpeed * direction, Smoothness)

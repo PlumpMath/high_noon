@@ -4,7 +4,7 @@ extends Area2D
 const BASE_SPEED = 10
 
 var velocity = Vector2()
-var direction = global.direction
+var direction = 0
 
 func _ready():
 	set_fixed_process(true)
@@ -16,11 +16,12 @@ func _fixed_process(delta):
 		velocity.x = -(delta + BASE_SPEED)
 	translate(velocity)
 
+func set_direction(desired_direction):
+	direction = desired_direction
 
 func _on_bullet_area2d_area_enter( area ):
 #	print("bullet_area_enter")
 	queue_free()
-
 
 func _on_bullet_area2d_body_enter( body ):
 #	print("bullet_body_enter")
