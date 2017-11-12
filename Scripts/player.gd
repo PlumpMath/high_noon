@@ -15,7 +15,7 @@ export var PlayerSpeed = 100
 export var Smoothness = 0.1
 
 onready var sprite = get_node("guy")
-onready var bullet = preload("res://bullet.tscn")
+onready var bullet = preload("res://bullet_area2d.tscn")
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -29,7 +29,8 @@ func _input(event):
 		jump_count += 1
 
 	if (event.is_action_pressed("shoot")):
-		print("Gonna shoot")
+		#print("Gonna shoot")
+		#Generate a bullet and shoot it in the direction we faced last
 		var b = bullet.instance()
 		print(get_tree().get_root())
 		if (global.direction == 1):

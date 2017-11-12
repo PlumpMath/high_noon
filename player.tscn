@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://Textures/sherif.png" type="Texture" id=2]
+[ext_resource path="res://Textures/gun.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 4.27427, 3.112 )
+extents = Vector2( 4.27427, 3.02691 )
 
 [node name="hero" type="KinematicBody2D"]
 
@@ -58,8 +59,17 @@ drag_margin/bottom = 0.2
 
 transform/pos = Vector2( 25.5939, 14.5345 )
 
+[node name="right_gun" type="Sprite" parent="shoot_right"]
+
+texture = ExtResource( 3 )
+
 [node name="shoot_left" type="Position2D" parent="."]
 
 transform/pos = Vector2( -25.3522, 14.7382 )
+
+[node name="left_gun" type="Sprite" parent="shoot_left"]
+
+texture = ExtResource( 3 )
+flip_h = true
 
 
