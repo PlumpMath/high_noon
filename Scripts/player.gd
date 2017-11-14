@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 # Constants
 const GRAVITY = 400
-const JUMP_STRENTH = 300
-const MAX_JUMP_COUNT = 1
+const JUMP_STRENTH = 250
+const MAX_JUMP_COUNT = 2
 
 # Members
 var velocity = Vector2()
@@ -59,10 +59,17 @@ func _fixed_process(delta):
 	if (is_colliding()):
 		on_ground = 1
 		var normal = get_collision_normal()
-#		print(normal)
 		motion = normal.slide(motion)
 		velocity = normal.slide(velocity)
 		move(motion)
 
 		if (normal == Vector2(0,-1)):
 			jump_count = 0
+
+
+func _on_Area2D_area_enter( area ):
+	print("Player_hit_area_enter")
+
+
+func _on_Area2D_body_enter( body ):
+	print("Player_hit_area_enter")

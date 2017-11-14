@@ -20,10 +20,12 @@ func set_direction(desired_direction):
 	direction = desired_direction
 
 func _on_bullet_area2d_area_enter( area ):
-#	print("bullet_area_enter")
+#	print("Entered Area2D with area ", area)
 	queue_free()
 
 func _on_bullet_area2d_body_enter( body ):
-#	print("bullet_body_enter")
+	if (body.get_name() == "hero"):
+		global.PlayerHealth -= 10
+		print("HIT Hero - Health: ", global.PlayerHealth)
 	queue_free()
 

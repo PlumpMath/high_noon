@@ -1,6 +1,7 @@
 extends Node
 
 # class member variables go here, for example:
+export var PlayerHealth = 100
 var hero_direction = 1
 var enemy_direction = -1
 
