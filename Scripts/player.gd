@@ -27,7 +27,7 @@ func _input(event):
 		velocity.y = -JUMP_STRENTH
 		jump_count += 1
 
-	if (event.is_action_pressed("shoot")):
+	if (event.is_action_pressed("shoot") && global.has_gun):
 		if (global.hero_direction == 1):
 			global.shoot_bullet(get_node("shoot_right").get_global_pos(), global.hero_direction)
 		elif (global.hero_direction == -1):
@@ -66,6 +66,9 @@ func _fixed_process(delta):
 		if (normal == Vector2(0,-1)):
 			jump_count = 0
 
+	if (global.has_gun):
+		get_node("shoot_right/right_gun").show()
+		get_node("shoot_left/left_gun").show()
 
 func _on_Area2D_area_enter( area ):
 	print("Player_hit_area_enter")
