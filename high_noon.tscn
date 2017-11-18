@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://Textures/tileset.res" type="TileSet" id=1]
 [ext_resource path="res://enemy_area2d.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Textures/backgound.png" type="Texture" id=4]
+[ext_resource path="res://welcome_npc.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SegmentShape2D" id=1]
 
@@ -36,7 +37,7 @@ tile_data = IntArray( 2490429, -2147483647, 2490430, -2147483647, 2490431, -2147
 
 [node name="enemy_area2d" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 1134.39, 1014.01 )
+transform/pos = Vector2( 1557.66, 1015.12 )
 transform/scale = Vector2( 4, 5 )
 
 [node name="hero" parent="." instance=ExtResource( 3 )]
@@ -45,6 +46,7 @@ transform/pos = Vector2( -107.228, 1010.09 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
+editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -71,6 +73,7 @@ region_rect = Rect2( 0, 0, 7680, 1508 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( -173.632, 1022.65 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -89,5 +92,10 @@ transform/pos = Vector2( 0, 20 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[node name="welcome_npc" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 681.427, 1012.92 )
+transform/scale = Vector2( 4, 5 )
 
 
