@@ -29,7 +29,6 @@ func _on_enemy_area2d_area_enter( area ):
 func _on_enemy_area2d_body_enter( body ):
 	print("Enemy_hit_body_enter")
 
-
 func _on_VisibilityNotifier2D_enter_screen():
 	print("Enemy_enters_screen")
 	can_shoot = true

@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://Scripts/welcome_npc.gd" type="Script" id=1]
 [ext_resource path="res://Textures/sherif.png" type="Texture" id=2]
-[ext_resource path="res://font.fnt" type="BitmapFont" id=3]
-[ext_resource path="res://Textures/gun.png" type="Texture" id=4]
+[ext_resource path="res://Textures/gun.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -36,31 +35,28 @@ script/script = ExtResource( 1 )
 
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="character_box" type="CollisionShape2D" parent="."]
 
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="intro_text" type="RichTextLabel" parent="."]
+[node name="ouch" type="Label" parent="."]
 
-anchor/left = 3
-anchor/top = 3
-anchor/right = 3
-anchor/bottom = 3
-focus/ignore_mouse = false
+focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 72.0
-margin/top = 92.0
-margin/right = -48.0
-margin/bottom = 52.0
-custom_fonts/normal_font = ExtResource( 3 )
-bbcode/enabled = true
-bbcode/bbcode = ""
-visible_characters = 0
+size_flags/vertical = 0
+margin/left = -20.0
+margin/top = -30.0
+margin/right = 20.0
+margin/bottom = -16.0
+text = "Ouch!"
+align = 1
+valign = 1
 percent_visible = 0.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="pickup_guns" type="Area2D" parent="."]
 
@@ -77,12 +73,12 @@ angular_damp = 1.0
 
 [node name="right_gun" type="Sprite" parent="pickup_guns"]
 
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 offset = Vector2( 10, 0 )
 
 [node name="left_gun" type="Sprite" parent="pickup_guns"]
 
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 offset = Vector2( -10, 0 )
 flip_h = true
 
@@ -111,17 +107,36 @@ shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
+[node name="npc_enter" type="Area2D" parent="."]
+
+transform/pos = Vector2( -40, 0 )
+transform/scale = Vector2( 0.1875, 0.34375 )
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="npc_enter"]
+
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
 rect = Rect2( -10, -10, 20, 20 )
 
 [connection signal="area_enter" from="." to="." method="_on_welcome_npc_area_enter"]
 
-[connection signal="body_enter" from="." to="." method="_on_welcome_npc_body_enter"]
-
 [connection signal="body_enter" from="pickup_guns" to="." method="_on_pickup_guns_body_enter"]
 
 [connection signal="body_enter" from="npc_exit" to="." method="_on_npc_exit_body_enter"]
+
+[connection signal="body_enter" from="npc_enter" to="." method="_on_npc_enter_body_enter"]
 
 [connection signal="exit_screen" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_exit_screen"]
 

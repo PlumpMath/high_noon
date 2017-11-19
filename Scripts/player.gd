@@ -11,7 +11,7 @@ var jump_allowed_timer = 0
 var jump_count = 0
 var on_ground = 0
 
-export var PlayerSpeed = 100
+export var PlayerSpeed = 150
 export var Smoothness = 0.1
 
 onready var sprite = get_node("guy")

@@ -31,8 +31,21 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+
+transform/scale = Vector2( 0.25, 0.25 )
+rect = Rect2( -10, -10, 20, 20 )
+enabler/pause_animations = true
+enabler/freeze_bodies = true
+enabler/pause_particles = true
+enabler/pause_animated_sprites = true
+enabler/process_parent = false
+enabler/fixed_process_parent = false
+
 [connection signal="area_enter" from="." to="." method="_on_bullet_area2d_area_enter"]
 
 [connection signal="body_enter" from="." to="." method="_on_bullet_area2d_body_enter"]
+
+[connection signal="exit_screen" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_exit_screen"]
 
 
