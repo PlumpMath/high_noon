@@ -8,6 +8,7 @@ var can_shoot = false
 var current_shot_timer = SHOT_TIMEOUT
 
 func _ready():
+	randomize()
 	set_fixed_process(true)
 
 func _fixed_process(delta):
@@ -16,7 +17,7 @@ func _fixed_process(delta):
 			current_shot_timer -= (delta * 100)
 		else:
 			global.shoot_bullet(get_node("Position2D").get_global_pos(), -1)
-			current_shot_timer = SHOT_TIMEOUT
+			current_shot_timer = rand_range(70, 140)
 
 #check if we have been hit and do damange
 func _on_enemy_area2d_area_enter( area ):
