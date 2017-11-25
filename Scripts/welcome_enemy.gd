@@ -1,10 +1,6 @@
 extends Area2D
 
-#func _ready():
-#	set_fixed_process(true)
-#	pass
-
-#func _fixed_process(delta):
+var enemy = preload("res://enemy_area2d.tscn").instance()
 
 func _on_npc_enter_body_enter( body ):
 	if (body.get_name() == "hero"):
@@ -14,7 +10,8 @@ func _on_npc_enter_body_enter( body ):
 func _on_npc_attack_body_enter( body ):
 	if (body.get_name() == "hero"):
 		global.dialogue = ""
-		var enemy = preload("res://enemy_area2d.tscn").instance()
 		enemy.set_pos(get_node("Position2D").get_pos())
 		add_child(enemy)
-		
+		get_node("empty_enemy").hide()
+		get_node("npc_enter").queue_free()
+		get_node("npc_attack").queue_free()
