@@ -88,7 +88,9 @@ shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
-[node name="npc_exit" type="Area2D" parent="."]
+[node name="npc_exit" type="Area2D" parent="." groups=[
+"world_trigger",
+]]
 
 transform/pos = Vector2( 70, 0 )
 transform/scale = Vector2( 0.1875, 0.34375 )
@@ -107,7 +109,9 @@ shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
-[node name="npc_enter" type="Area2D" parent="."]
+[node name="npc_enter" type="Area2D" parent="." groups=[
+"world_trigger",
+]]
 
 transform/pos = Vector2( -40, 0 )
 transform/scale = Vector2( 0.1875, 0.34375 )

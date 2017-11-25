@@ -19,8 +19,9 @@ func _fixed_process(delta):
 func set_direction(desired_direction):
 	direction = desired_direction
 
-func _on_bullet_area2d_area_enter( area ):
-	queue_free()
+func _on_bullet_area2d_area_enter(area):
+	if(!area.is_in_group("world_trigger")):
+		queue_free()
 
 func _on_bullet_area2d_body_enter( body ):
 	if (body.get_name() == "hero"):
