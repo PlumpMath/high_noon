@@ -3,7 +3,7 @@ extends KinematicBody2D
 # Constants
 const GRAVITY = 400
 const JUMP_STRENTH = 250
-const MAX_JUMP_COUNT = 2
+const MAX_JUMP_COUNT = 200
 
 # Members
 var velocity = Vector2()
@@ -24,6 +24,7 @@ func _ready():
 
 func _input(event):
 	if jump_count < MAX_JUMP_COUNT and event.is_action_pressed("jump"):
+		global.hero_position = get_pos()
 		velocity.y = -JUMP_STRENTH
 		jump_count += 1
 
@@ -42,10 +43,12 @@ func _fixed_process(delta):
 
 	var direction = 0
 	if (Input.is_action_pressed("move_left")):
+		global.hero_position = get_pos()
 		direction = -1
 		global.hero_direction = -1
 		sprite.set_flip_h(true)
 	elif (Input.is_action_pressed("move_right")):
+		global.hero_position = get_pos()
 		direction = 1
 		global.hero_direction = 1
 		sprite.set_flip_h(false)
@@ -72,7 +75,6 @@ func _fixed_process(delta):
 
 func _on_Area2D_area_enter( area ):
 	print("Player_hit_area_enter")
-
 
 func _on_Area2D_body_enter( body ):
 	print("Player_hit_area_enter")
