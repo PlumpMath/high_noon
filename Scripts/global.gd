@@ -1,12 +1,17 @@
 extends Node
 
-# class member variables go here, for example:
-export var PlayerHealth = 100
+const DEFAULT_MAX_HEALTH = 100
+export var PlayerHealth = DEFAULT_MAX_HEALTH
 var hero_direction = 1
 var enemy_direction = -1
 var has_gun = false
 var dialogue = ""
 var hero_position = Vector2()
+
+func restart_defaults():
+	PlayerHealth = DEFAULT_MAX_HEALTH
+	has_gun = false
+	dialogue = ""
 
 func shoot_bullet(spawn_point,fire_directon):
 	var bullet = preload("res://bullet_area2d.tscn").instance()
