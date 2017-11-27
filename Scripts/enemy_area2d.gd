@@ -22,7 +22,6 @@ func _fixed_process(delta):
 #check if we have been hit and do damange
 func _on_enemy_area2d_area_enter( area ):
 	current_damage += 20
-	print("Enemy health %d" % (MAX_DAMAGE - current_damage))
 	get_node("blood_particle").set_emitting(true)
 	if (current_damage >= MAX_DAMAGE):
 		queue_free()
@@ -31,5 +30,4 @@ func _on_enemy_area2d_body_enter( body ):
 	print("Enemy_hit_body_enter")
 
 func _on_VisibilityNotifier2D_enter_screen():
-	print("Enemy_enters_screen")
 	can_shoot = true

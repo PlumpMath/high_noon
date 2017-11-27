@@ -26,7 +26,7 @@ func _on_bullet_area2d_area_enter(area):
 func _on_bullet_area2d_body_enter( body ):
 	if (body.get_name() == "hero"):
 		global.PlayerHealth -= 10
-		print("HIT Hero - Health: ", global.PlayerHealth)
+#		print("HIT Hero - Health: ", global.PlayerHealth)
 	queue_free()
 
 func _on_VisibilityEnabler2D_exit_screen():

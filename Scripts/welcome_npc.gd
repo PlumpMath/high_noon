@@ -13,7 +13,6 @@ func _fixed_process(delta):
 		translate(velocity)
 
 func _on_welcome_npc_area_enter( area ):
-	print("Ouch!")
 	text.set_percent_visible(100)
 
 func _on_npc_enter_body_enter( body ):
@@ -24,7 +23,6 @@ func _on_pickup_guns_body_enter( body ):
 	get_node("pickup_guns").hide()
 
 func _on_npc_exit_body_enter( body ):
-	print("Thanks bye!")
 	text.hide()
 	get_node("npc_enter").hide()
 	get_node("npc_exit").hide()
@@ -33,6 +31,5 @@ func _on_npc_exit_body_enter( body ):
 
 func _on_VisibilityNotifier2D_exit_screen():
 	if (global.has_gun):
-		print("Destroying welcome NPC")
 		global.dialogue = ""
 		queue_free()

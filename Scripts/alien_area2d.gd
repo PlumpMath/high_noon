@@ -25,11 +25,12 @@ func _fixed_process(delta):
 
 #check if we have been hit and do damange
 func _on_alien_area2d_area_enter( area ):
-	current_damage += 20
-	print("Alien health %d" % (MAX_DAMAGE - current_damage))
-#	get_node("blood_particle").set_emitting(true)
-	if (current_damage >= MAX_DAMAGE):
-		queue_free()
+	if (area.get_name() != "alien_bullet_area2d"):
+		current_damage += 20
+#		print("Alien health %d" % (MAX_DAMAGE - current_damage))
+#		get_node("blood_particle").set_emitting(true)
+		if (current_damage >= MAX_DAMAGE):
+			queue_free()
 
 func _on_alien_area2d_body_enter( body ):
 	print("Alien_hit_body_enter")

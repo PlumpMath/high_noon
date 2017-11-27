@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 3.48602
+radius = 1.98893
 
 [node name="alien_bullet_area2d" type="Area2D"]
 

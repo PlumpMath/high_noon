@@ -24,7 +24,6 @@ func _ready():
 
 func _input(event):
 	if jump_count < MAX_JUMP_COUNT and event.is_action_pressed("jump"):
-		global.hero_position = get_pos()
 		velocity.y = -JUMP_STRENTH
 		jump_count += 1
 
@@ -36,6 +35,7 @@ func _input(event):
 
 
 func _fixed_process(delta):
+	global.hero_position = get_global_pos()
 	velocity.y += delta * GRAVITY
 	
 	if (jump_allowed_timer > 0):
@@ -43,12 +43,10 @@ func _fixed_process(delta):
 
 	var direction = 0
 	if (Input.is_action_pressed("move_left")):
-		global.hero_position = get_pos()
 		direction = -1
 		global.hero_direction = -1
 		sprite.set_flip_h(true)
 	elif (Input.is_action_pressed("move_right")):
-		global.hero_position = get_pos()
 		direction = 1
 		global.hero_direction = 1
 		sprite.set_flip_h(false)
