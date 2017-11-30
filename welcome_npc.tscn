@@ -96,7 +96,7 @@ transform/pos = Vector2( 70, 0 )
 transform/scale = Vector2( 0.1875, 0.34375 )
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1.80369, 45.5665, -7.13399 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -105,6 +105,8 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="npc_exit"]
 
+transform/pos = Vector2( 45.5665, -7.13399 )
+transform/scale = Vector2( 1, 1.80369 )
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0

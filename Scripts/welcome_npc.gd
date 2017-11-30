@@ -23,11 +23,13 @@ func _on_pickup_guns_body_enter( body ):
 	get_node("pickup_guns").hide()
 
 func _on_npc_exit_body_enter( body ):
-	text.hide()
-	get_node("npc_enter").hide()
-	get_node("npc_exit").hide()
-	global.dialogue = "Local: Bye!"
-	npc_can_leave = true
+	if (global.has_gun):
+		text.hide()
+		get_node("npc_enter").hide()
+		get_node("npc_exit").hide()
+		get_node("pickup_guns").hide()
+		global.dialogue = "Local: Bye!"
+		npc_can_leave = true
 
 func _on_VisibilityNotifier2D_exit_screen():
 	if (global.has_gun):

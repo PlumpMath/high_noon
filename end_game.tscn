@@ -9,6 +9,8 @@ extents = Vector2( 10, 31.5595 )
 
 [node name="end_game" type="Area2D"]
 
+transform/pos = Vector2( 0, -69.3005 )
+transform/scale = Vector2( 1, 3.16564 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )

@@ -140,6 +140,6 @@ transform/scale = Vector2( 5, 4 )
 
 [node name="end_game" parent="." instance=ExtResource( 11 )]
 
-transform/pos = Vector2( 5492.7, 992.415 )
+transform/pos = Vector2( 5452.62, 950.66 )
 
 
