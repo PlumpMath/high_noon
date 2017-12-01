@@ -1,7 +1,7 @@
 extends Area2D
 
 # Member variables
-const BASE_SPEED_ALIEN = 2
+const BASE_SPEED_ALIEN = 4
 const BASE_SPEED_HUMAN = 10
 
 var SPEED = 1
