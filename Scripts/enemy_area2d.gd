@@ -16,7 +16,7 @@ func _fixed_process(delta):
 		if (current_shot_timer > 1):
 			current_shot_timer -= (delta * 100)
 		else:
-			global.shoot_bullet(get_node("Position2D").get_global_pos(), -1)
+			global.shoot_bullet(get_node("Position2D").get_global_pos(), global.ENEMY_HUMAN)
 			current_shot_timer = rand_range(70, 140)
 
 #check if we have been hit and do damange

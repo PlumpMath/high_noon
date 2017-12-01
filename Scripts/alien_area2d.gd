@@ -6,7 +6,6 @@ const SHOT_TIMEOUT = 100
 var current_damage = 0
 var can_shoot = false
 var current_shot_timer = SHOT_TIMEOUT
-var bullet_scale = Vector2(.5,.5)
 
 func _ready():
 	randomize()
@@ -17,10 +16,7 @@ func _fixed_process(delta):
 		if (current_shot_timer > 1):
 			current_shot_timer -= (delta * 100)
 		else:
-			var bullet = preload("res://alien_bullet_area2d.tscn").instance()
-			bullet.set_scale(bullet_scale)
-			bullet.set_pos(get_node("Position2D").get_pos())
-			add_child(bullet)
+			global.shoot_bullet(get_node("Position2D").get_global_pos(), global.ENEMY_ALIEN)
 			current_shot_timer = rand_range(70, 140)
 
 #check if we have been hit and do damange

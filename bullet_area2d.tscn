@@ -1,18 +1,19 @@
 [gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://Scripts/bullet_area2d.gd" type="Script" id=1]
-[ext_resource path="res://Textures/bullet.png" type="Texture" id=2]
+[ext_resource path="res://Textures/alien_bullet.png" type="Texture" id=2]
+
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 3.15968
+radius = 1.98893
 
 [node name="bullet_area2d" type="Area2D"]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, -0.204189, -0.357328 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -0.0944672, -0.0336351 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -20,20 +21,21 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 1 )
 
-[node name="bullet_sprite" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
 
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-transform/pos = Vector2( -0.204189, -0.357328 )
+transform/pos = Vector2( -0.0944672, -0.0336351 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
 
-transform/scale = Vector2( 0.25, 0.25 )
+transform/pos = Vector2( 0.221073, 0.340979 )
+transform/scale = Vector2( 0.252878, 0.229904 )
 rect = Rect2( -10, -10, 20, 20 )
 enabler/pause_animations = true
 enabler/freeze_bodies = true
@@ -42,9 +44,9 @@ enabler/pause_animated_sprites = true
 enabler/process_parent = false
 enabler/fixed_process_parent = false
 
-[connection signal="area_enter" from="." to="." method="_on_bullet_area2d_area_enter"]
+[connection signal="area_enter" from="." to="." method="_on_alien_bullet_area2d_area_enter"]
 
-[connection signal="body_enter" from="." to="." method="_on_bullet_area2d_body_enter"]
+[connection signal="body_enter" from="." to="." method="_on_alien_bullet_area2d_body_enter"]
 
 [connection signal="exit_screen" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_exit_screen"]
 

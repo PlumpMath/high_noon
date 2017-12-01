@@ -3,7 +3,7 @@ extends KinematicBody2D
 # Constants
 const GRAVITY = 400
 const JUMP_STRENTH = 250
-const MAX_JUMP_COUNT = 200
+const MAX_JUMP_COUNT = 2
 
 # Members
 var velocity = Vector2()
@@ -29,9 +29,9 @@ func _input(event):
 
 	if (event.is_action_pressed("shoot") && global.has_gun):
 		if (global.hero_direction == 1):
-			global.shoot_bullet(get_node("shoot_right").get_global_pos(), global.hero_direction)
+			global.shoot_bullet(get_node("shoot_right").get_global_pos(), global.PLAYER)
 		elif (global.hero_direction == -1):
-			global.shoot_bullet(get_node("shoot_left").get_global_pos(), global.hero_direction)
+			global.shoot_bullet(get_node("shoot_left").get_global_pos(), global.PLAYER)
 
 
 func _fixed_process(delta):
